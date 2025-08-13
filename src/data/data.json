@@ -1,0 +1,77 @@
+[
+    {
+        "id": 0,
+        "name": "Yi Sang",
+        "identities": 
+        [
+            {
+                "name": "[LCB Sinner] Yi Sang",
+                "rarity": 0,
+                "damageType": "None",
+                "image":""
+            },
+            {
+                "name": "[Seven Assoc. South Section 6] Yi Sang",
+                "rarity": 1,
+                "damageType": "None",
+                "image":""
+            },
+            {
+                "name": "[Blade Lineage Salsu] Yi Sang",
+                "rarity": 2,
+                "damageType": "None",
+                "image":""
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "Faust",
+        "identities": 
+        [
+            {
+                "name": "[LCB Sinner] Faust",
+                "rarity": 0,
+                "damageType": "None",
+                "image":""
+            },
+            {
+                "name": "[W Corp. L2 Cleanup Agent] Faust",
+                "rarity": 1,
+                "damageType": "Blunt",
+                "image":""
+            },
+            {
+                "name": "[The One Who Grips] Faust",
+                "rarity": 2,
+                "damageType": "None",
+                "image":""
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Don Quixote",
+        "identities": 
+        [
+            {
+                "name": "[LCB Sinner] Don Quixote",
+                "rarity": 0,
+                "damageType": "None",
+                "image":""
+            },
+            {
+                "name": "[Shi Assoc. South Section 5 Director] Don Quixote",
+                "rarity": 1,
+                "damageType": "None",
+                "image":""
+            },
+            {
+                "name": "[W Crop. L3 Cleanup Agent] Don Quixote",
+                "rarity": 2,
+                "damageType": "None",
+                "image":""
+            }
+        ]
+    }
+]

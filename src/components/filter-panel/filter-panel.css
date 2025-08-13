@@ -1,0 +1,14 @@
+.filter-panel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.filter-panel > * {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  border: solid black 1px;
+}
