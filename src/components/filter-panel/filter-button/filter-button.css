@@ -1,16 +1,52 @@
-.icon-container {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  border-radius: 2px;
-  color: white;
-  font-size: 30px;
-  background-color: #494A57;
+.filter-button-container {
+  position: relative;
+  display: inline-block;
 }
 
-.button {
-  width: 40px;
-  height: 40px;
+.filter-button {
+  width: 55px;
+  height: 55px;
+  background-color: #2e3947;
+  outline: none;
+  border-style: none;
+  border-radius: 4px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.filter-button.toggled {
+    background-color: #576980;
+    border-bottom: 2px solid orange;
+}
+
+.filter-button:hover {
+  transform: scale(1.035);
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.filter-button img {
+  height: 70%;
+  width: 70%;
+  object-fit: contain;
+}
+
+.tooltip-text {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgb(24, 24, 24);
+  color: white;
+  padding: 6px 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.filter-button-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
 }

@@ -17,11 +17,33 @@ const App = () => {
   const [filters, setFilters] = useState({
     rarities: [],
     damageTypes: [],
+    sinnerNames: [],
+    searchTerm: '',
   });
 
   useEffect(() => {
     setSinners(characterData);
   }, []);
+
+  const toggleFilter = (category, value) => {
+    setFilters(prev => {
+      const currentValues = prev[category];
+
+      if(Array.isArray(currentValues)) {
+        return {
+          ...prev,
+          [category]: currentValues.includes(value)
+            ? currentValues.filter(v => v !== value)
+            : [...currentValues, value]
+        };
+      }
+
+      return {
+        ...prev,
+        [category]: value
+      };
+    });
+  };
 
   const toggleRarity = (rarity) => {
     toggleFilter('rarities', rarity);
@@ -31,23 +53,29 @@ const App = () => {
     toggleFilter('damageTypes', type);
   };
 
-  const toggleFilter = (category, value) => {
-    setFilters(prev => {
-      const currentValues = prev[category];
-      return {
-        ...prev,
-        [category]: currentValues.includes(value)
-          ? currentValues.filter(v => v !== value)
-          : [...currentValues, value]
-      };
-    });
-  };
+  const toggleSinner = (sinner) => {
+    toggleFilter('sinnerNames', sinner)
+  }
+
+  const setSearchTerm = (input) => {
+    toggleFilter('searchTerm', input)
+  }
+
+  const clearFilters = () => {
+    setFilters((prev) => ({
+      ...prev,
+      rarities: [],
+      damageTypes: [],
+      sinnerNames: [],
+    }));
+  }
+
+  const filteredSinners = useFilteredSinners(sinners, filters)
 
   useEffect(() => {
     console.log("Filters Updated: ", filters)
   }, [filters])
 
-  const filteredSinners = useFilteredSinners(sinners, filters)
 
   return (
     <>
@@ -56,8 +84,12 @@ const App = () => {
         <div className='hbox'>
           <FilterPanel
             filters={filters}
+            sinners={sinners}
             toggleRarity={toggleRarity}
             toggleDamageType={toggleDamageType}
+            toggleSinner={toggleSinner}
+            setSearchTerm={setSearchTerm}
+            clearFilters={clearFilters}
           />
         </div>
         <div className='sinners'>

@@ -2,6 +2,7 @@
     {
         "id": 0,
         "name": "Yi Sang",
+        "icon": "sinner_icons/Yi_Sang_Icon.png",
         "identities": 
         [
             {
@@ -27,6 +28,7 @@
     {
         "id": 1,
         "name": "Faust",
+        "icon": "sinner_icons/Faust_Icon.png",
         "identities": 
         [
             {
@@ -52,6 +54,7 @@
     {
         "id": 2,
         "name": "Don Quixote",
+        "icon": "sinner_icons/Don_Quixote_Icon.png",
         "identities": 
         [
             {
@@ -69,6 +72,132 @@
             {
                 "name": "[W Crop. L3 Cleanup Agent] Don Quixote",
                 "rarity": 2,
+                "damageType": "None",
+                "image":""
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Ryoshu",
+        "icon": "sinner_icons/Ryoshu_Icon.png",
+        "identities": 
+        [
+            {
+                "name": "[LCB Sinner] Ryoshu",
+                "rarity": 0,
+                "damageType": "None",
+                "image":""
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Meursault",
+        "icon": "sinner_icons/Meursault_Icon.png",
+        "identities": 
+        [
+            {
+                "name": "[LCB Sinner] Meursault",
+                "rarity": 0,
+                "damageType": "None",
+                "image":""
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Hong Lu",
+        "icon": "sinner_icons/Hong_Lu_Icon.png",
+        "identities": 
+        [
+            {
+                "name": "[LCB Sinner] Hong Lu",
+                "rarity": 0,
+                "damageType": "None",
+                "image":""
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Heathcliff",
+        "icon": "sinner_icons/Heathcliff_Icon.png",
+        "identities": 
+        [
+            {
+                "name": "[LCB Sinner] Heathcliff",
+                "rarity": 0,
+                "damageType": "None",
+                "image":""
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Ishmael",
+        "icon": "sinner_icons/Ishmael_Icon.png",
+        "identities": 
+        [
+            {
+                "name": "[LCB Sinner] Ishmael",
+                "rarity": 0,
+                "damageType": "None",
+                "image":""
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Rodion",
+        "icon": "sinner_icons/Rodion_Icon.png",
+        "identities": 
+        [
+            {
+                "name": "[LCB Sinner] Rodion",
+                "rarity": 0,
+                "damageType": "None",
+                "image":""
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Sinclair",
+        "icon": "sinner_icons/Sinclair_Icon.png",
+        "identities": 
+        [
+            {
+                "name": "[LCB Sinner] Sinclair",
+                "rarity": 0,
+                "damageType": "None",
+                "image":""
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Outis",
+        "icon": "sinner_icons/Outis_Icon.png",
+        "identities": 
+        [
+            {
+                "name": "[LCB Sinner] Outis",
+                "rarity": 0,
+                "damageType": "None",
+                "image":""
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "name": "Gregor",
+        "icon": "sinner_icons/Gregor_Icon.png",
+        "identities": 
+        [
+            {
+                "name": "[LCB Sinner] Gregor",
+                "rarity": 0,
                 "damageType": "None",
                 "image":""
             }

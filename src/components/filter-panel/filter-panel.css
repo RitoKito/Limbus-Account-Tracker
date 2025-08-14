@@ -12,3 +12,43 @@
   gap: 10px;
   border: solid black 1px;
 }
+
+.search-filter-container {
+  height: 55px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.search-input {
+  width: 200px;
+  background-color: #2e3947;
+  outline: none;
+  border-style: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  color: white;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.788);
+}
+
+.reset-filters-btn {
+  width: 120px;
+  background-color: #2e3947;
+  outline: none;
+  border-style: none;
+  font-size: 16px;
+  border-radius: 4px;
+  color: rgb(225, 225, 225);
+  transition: color 0.3s;
+}
+
+.reset-filters-btn:hover {
+  color: white;
+}
+
