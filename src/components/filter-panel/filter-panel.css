@@ -3,18 +3,19 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 30px;
+  font-size: 18px;
+  color: white;
 }
 
-.filter-panel > * {
+.filter-btns-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px;
-  border: solid black 1px;
+  gap: 5px;
 }
 
 .search-filter-container {
-  height: 55px;
+  height: 45px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -52,3 +53,6 @@
   color: white;
 }
 
+.filter-btns-section {
+  font-size: 14px;
+}

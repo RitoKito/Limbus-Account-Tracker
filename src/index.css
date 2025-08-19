@@ -7,6 +7,8 @@
 body {
   padding: 40px;
   background-color: #232A32;
+  font-family: sans-serif;
+  color: white;
 }
 
 .hbox {
@@ -14,8 +16,6 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
-  border: solid black 1px;
-  padding: 5px;
 }
 
 .vbox {
@@ -23,6 +23,18 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   gap: 10px;
-  border: solid black 1px;
-  padding: 5px;
+}
+
+.title,
+.main-content section {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 32px;
+}
+
+.section-title {
+  font-size: 20px;
+  margin-bottom: 5px;
 }

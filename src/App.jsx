@@ -21,6 +21,8 @@ const App = () => {
     searchTerm: '',
   });
 
+  const [filterCount, setFilterCounter] = useState(0);
+
   useEffect(() => {
     setSinners(characterData);
   }, []);
@@ -69,38 +71,52 @@ const App = () => {
       sinnerNames: [],
     }));
   }
-
   const filteredSinners = useFilteredSinners(sinners, filters)
 
   useEffect(() => {
-    console.log("Filters Updated: ", filters)
-  }, [filters])
+    const filterCount = Object.entries(filters).reduce((acc, [key, value]) => {
+      if(key === 'searchTerm') return acc;
+      return acc + (Array.isArray(value) ? value.length : 0)
+    }, 0);
+
+    setFilterCounter(filterCount);
+  }, [filters, sinners])
 
 
   return (
-    <>
-      <div className='vbox'>
-        <h1>Identities</h1>
-        <div className='hbox'>
-          <FilterPanel
-            filters={filters}
-            sinners={sinners}
-            toggleRarity={toggleRarity}
-            toggleDamageType={toggleDamageType}
-            toggleSinner={toggleSinner}
-            setSearchTerm={setSearchTerm}
-            clearFilters={clearFilters}
-          />
-        </div>
-        <div className='sinners'>
-          {filteredSinners.map((sinner) => (
-            <SinnerPanel 
-            key={sinner.id}
-            sinner={sinner}/>
-          ))}
-        </div>
-      </div>
-    </>
+    <main className='main-content vbox'>
+      <h1 className='title'>Identities</h1>
+
+      <section>
+
+        <h2 className='section-title'>
+          {`Filters (${filterCount})`}
+        </h2>
+
+        <FilterPanel
+          filters={filters}
+          sinners={sinners}
+          toggleRarity={toggleRarity}
+          toggleDamageType={toggleDamageType}
+          toggleSinner={toggleSinner}
+          setSearchTerm={setSearchTerm}
+          clearFilters={clearFilters}
+        />
+
+      </section>
+
+      <section>
+        <h2 className='section-title'>
+          {`Filtered Identities (${filteredSinners.idCount}):`}
+        </h2>
+
+        {filteredSinners.sinners.map((sinner) => (
+          <SinnerPanel 
+          key={sinner.id}
+          sinner={sinner}/>
+        ))}
+      </section>
+    </main>
   )
 }
 

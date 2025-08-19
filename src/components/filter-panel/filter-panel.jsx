@@ -13,59 +13,84 @@ const damageTypes = [
   { type: "Pierce", icon: "damage_type_icons/Pierce.png" },
 ]
 
-
-// TODO refactor search filter container
 const FilterPanel = ({ filters, sinners, toggleRarity, toggleDamageType, toggleSinner, setSearchTerm, clearFilters }) => {
-    return(
-      <div className='vbox'>
-        <div className='search-filter-container'>
-          <input className='search-input' type="text" placeholder='Search by name...' onChange={(e) => setSearchTerm(e.target.value)}/>
-          <button className='reset-filters-btn' onClick={clearFilters}>Clear Filters</button>
-        </div>
-        
-        <div className='filter-panel'>
-          <div className='rarity-panel'>
-            {rarities.map(({rarity, tooltipText, icon}) => (
-              <FilterButton
-                key={rarity}
-                value={rarity}
-                icon={icon}
-                tooltipText={tooltipText}
-                onClick={() => toggleRarity(rarity)}
-                isSelected={filters.rarities.includes(rarity)}
-              />
-            ))}
-          </div>
+    const filterPanelConfigs = [
+    {
+      className: 'rarity-panel',
+      panelName: 'Rarity',
+      data: rarities,
+      valueKey: 'rarity',
+      tooltipKey: 'tooltipText',
+      iconKey: 'icon',
+      onClick: toggleRarity,
+      selected: filters.rarities,
+    },
+    {
+      className: 'damage-type-panel',
+      panelName: 'Damage Type',
+      data: damageTypes,
+      valueKey: 'type',
+      tooltipKey: 'type',
+      iconKey: 'icon',
+      onClick: toggleDamageType,
+      selected: filters.damageTypes,
+    },
+    {
+      className: 'sinner-panel',
+      panelName: 'Sinners',
+      data: sinners,
+      valueKey: 'name',
+      tooltipKey: 'name',
+      iconKey: 'icon',
+      onClick: toggleSinner,
+      selected: filters.sinnerNames,
+    },
+  ];
 
-          <div className='damage-type-panel'>
-            {damageTypes.map(({type, icon}) => (
-              <FilterButton
-                key={type}
-                value={type}
-                icon={icon}
-                tooltipText={type}
-                onClick={() => toggleDamageType(type)}
-                isSelected={filters.damageTypes.includes(type)}
-              />
-            ))}
-          </div>
+  return(
+    <div className='vbox'>
 
-          <div className='sinner-panel'>
-            {sinners.map(sinner => (
-              <FilterButton
-                key={sinner.name}
-                value={sinner.name}
-                label={sinner.name[0]}
-                icon={sinner.icon}
-                tooltipText={sinner.name}
-                onClick={() => toggleSinner(sinner.name)}
-                isSelected={filters.sinnerNames.includes(sinner.name)}
-              />
-            ))}
-          </div>
-        </div>
+      <div className='search-filter-container'>
+        <input 
+          className='search-input' 
+          type="text"
+          placeholder='Search by name...' 
+          onChange={(e) => setSearchTerm(e.target.value)}/>
+        <button className='reset-filters-btn' onClick={clearFilters}>
+          Clear Filters
+        </button>
       </div>
-    )
+      
+      <section className='filter-panel'>
+        {filterPanelConfigs.map(({ className, panelName, data, valueKey, tooltipKey, iconKey, onClick, selected }) => (
+          <div key={className} className={className}>
+            <div className='vbox'>
+
+              <h3 className='filter-btns-section'>{panelName}</h3>
+
+              <div className='filter-btns-container'>
+                {data.map(buttonDataObj => {
+                  const value = buttonDataObj[valueKey];
+                  return (
+                    <FilterButton
+                      key={value}
+                      value={value}
+                      icon={buttonDataObj[iconKey]}
+                      tooltipText={buttonDataObj[tooltipKey]}
+                      onClick={() => onClick(value)}
+                      isSelected={selected.includes(value)}
+                    />
+                  );
+                })}
+              </div>
+              
+            </div>
+          </div>
+        ))}
+      </section>
+      
+    </div>
+  )
 }
 
 export default FilterPanel;

@@ -1,0 +1,10 @@
+.sinner-heading {
+    position: relative;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+.sinner-icon {
+  height: 30px;
+  width: 30px;
+}

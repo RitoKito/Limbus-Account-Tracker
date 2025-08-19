@@ -8,7 +8,7 @@ const rarityLabels = {
 
 const IdentityCard = ({identityName, rarirty, image}) => {
     return (
-        <div className='identity'>
+        <div className='identity-card'>
             <h2 className='identity-name'>{identityName}</h2>
             <h2 className='identity-rarity'>{rarityLabels[rarirty]}</h2>
         </div>

@@ -1,31 +1,13 @@
-import { useState, useEffect } from 'react';
 import './filter-button.css'
-
-const iconMap = import.meta.glob('../../../assets/button_icons/**/*.png');
+import { useState, useEffect } from 'react';
+import { loadIcon } from '@/utils/iconLoader';
 
 const FilterButton = ({ value, isSelected, onClick, icon, tooltipText }) => {
   const [iconSrc, setIconSrc] = useState(null);
   useEffect(() => {
     let isMounted = true;
 
-    async function loadIcon() {
-      if(!icon) return;
-
-      const iconPath = `../../../assets/button_icons/${icon}`;
-      const loader = iconMap[iconPath];
-
-      if(loader) {
-        const module = await loader();
-        if(isMounted) {
-          setIconSrc(module.default);
-        }
-      }
-      else {
-        console.warn(`Icon not found for path: ${iconPath}`);
-      }
-    }
-
-    loadIcon();
+    loadIcon(icon).then(setIconSrc)
 
     return () => {
       isMounted = false;
