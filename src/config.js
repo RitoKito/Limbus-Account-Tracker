@@ -1,0 +1,1 @@
+export const WIKI_BASE_IMAGE_URL = "https://limbuscompany.wiki.gg/images/";

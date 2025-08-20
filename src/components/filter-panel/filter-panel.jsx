@@ -2,18 +2,28 @@ import './filter-panel.css'
 import FilterButton from './filter-button/filter-button.jsx'
 
 const rarities = [
-  { rarity: 0, tooltipText: "0", icon: "rarity_icons/rarity_1.png" },
-  { rarity: 1, tooltipText: "00", icon: "rarity_icons/rarity_2.png" },
-  { rarity: 2, tooltipText: "000", icon: "rarity_icons/rarity_3.png" },
+  { rarity: 0, tooltipText: "0", icon: "2/21/IDNumber1.png" },
+  { rarity: 1, tooltipText: "00", icon: "9/90/IDNumber2.png" },
+  { rarity: 2, tooltipText: "000", icon: "8/82/IDNumber3.png" },
 ]
 
 const damageTypes = [
-  { type: "Blunt", icon: "damage_type_icons/Blunt.png" },
-  { type: "Slash", icon: "damage_type_icons/Slash.png" },
-  { type: "Pierce", icon: "damage_type_icons/Pierce.png" },
+  { type: "Blunt", icon: "7/7f/Blunt.png" },
+  { type: "Slash", icon: "5/56/Slash.png" },
+  { type: "Pierce", icon: "9/9b/Pierce.png" },
 ]
 
-const FilterPanel = ({ filters, sinners, toggleRarity, toggleDamageType, toggleSinner, setSearchTerm, clearFilters }) => {
+const sinTypes = [
+  {type: "Wrath", icon: "1/11/LcbSinWrath.png"},
+  {type: "Lust", icon: "c/c2/LcbSinLust.png"},
+  {type: "Sloth", icon: "a/a8/LcbSinSloth.png"},
+  {type: "Glut", icon: "f/fc/LcbSinGluttony.png"},
+  {type: "Gloom", icon: "9/9a/LcbSinGloom.png"},
+  {type: "Pride", icon: "b/b3/LcbSinPride.png"},
+  {type: "Envy", icon: "f/f2/LcbSinEnvy.png"},
+]
+
+const FilterPanel = ({ filters, sinners, toggleRarity, toggleDamageType, toggleSin, toggleSinner, setSearchTerm, clearFilters }) => {
     const filterPanelConfigs = [
     {
       className: 'rarity-panel',
@@ -36,8 +46,18 @@ const FilterPanel = ({ filters, sinners, toggleRarity, toggleDamageType, toggleS
       selected: filters.damageTypes,
     },
     {
+      className: 'sin-type-panel',
+      panelName: 'Sin',
+      data: sinTypes,
+      valueKey: 'type',
+      tooltipKey: 'type',
+      iconKey: 'icon',
+      onClick: toggleSin,
+      selected: filters.sinTypes,
+    },
+    {
       className: 'sinner-panel',
-      panelName: 'Sinners',
+      panelName: 'Sinner',
       data: sinners,
       valueKey: 'name',
       tooltipKey: 'name',

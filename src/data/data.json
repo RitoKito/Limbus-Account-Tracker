@@ -2,77 +2,86 @@
     {
         "id": 0,
         "name": "Yi Sang",
-        "icon": "sinner_icons/Yi_Sang_Icon.png",
+        "icon": "a/a2/Yi_Sang_Icon.png",
         "identities": 
         [
             {
                 "name": "[LCB Sinner] Yi Sang",
                 "rarity": 0,
-                "damageType": "None",
-                "image":""
+                "damageTypes": ["Slash", "Pierce"],
+                "sinTypes": ["Gloom", "Envy", "Sloth"],
+                "image":"thumb/e/e9/LCB_Sinner_Yi_Sang.png/125px-LCB_Sinner_Yi_Sang.png"
             },
             {
                 "name": "[Seven Assoc. South Section 6] Yi Sang",
                 "rarity": 1,
-                "damageType": "None",
-                "image":""
+                "damageTypes": [],
+                "sinTypes": [],
+                "image":"thumb/a/a1/Seven_Assoc._South_Section_6_Yi_Sang_Uptied.png/125px-Seven_Assoc._South_Section_6_Yi_Sang_Uptied.png"
             },
             {
                 "name": "[Blade Lineage Salsu] Yi Sang",
                 "rarity": 2,
-                "damageType": "None",
-                "image":""
+                "damageTypes": [],
+                "sinTypes": [],
+                "image":"thumb/f/f3/Blade_Lineage_Salsu_Yi_Sang_Uptied.png/125px-Blade_Lineage_Salsu_Yi_Sang_Uptied.png"
             }
         ]
     },
     {
         "id": 1,
         "name": "Faust",
-        "icon": "sinner_icons/Faust_Icon.png",
+        "icon": "d/dd/Faust_Icon.png",
         "identities": 
         [
             {
                 "name": "[LCB Sinner] Faust",
                 "rarity": 0,
-                "damageType": "None",
-                "image":""
+                "damageTypes": [],
+                "sinTypes": [],
+                "image":"thumb/a/a8/LCB_Sinner_Faust.png/125px-LCB_Sinner_Faust.png"
             },
             {
                 "name": "[W Corp. L2 Cleanup Agent] Faust",
                 "rarity": 1,
-                "damageType": "Blunt",
-                "image":""
+                "damageTypes": [],
+                "sinTypes": [],
+                "image":"thumb/b/ba/W_Corp._L2_Cleanup_Agent_Faust_Uptied.png/125px-W_Corp._L2_Cleanup_Agent_Faust_Uptied.png"
             },
             {
                 "name": "[The One Who Grips] Faust",
                 "rarity": 2,
-                "damageType": "None",
-                "image":""
+                "damageTypes": [],
+                "sinTypes": [],
+                "image":"thumb/c/cc/The_One_Who_Grips_Faust_Uptied.png/125px-The_One_Who_Grips_Faust_Uptied.png"
             }
         ]
     },
     {
         "id": 2,
         "name": "Don Quixote",
-        "icon": "sinner_icons/Don_Quixote_Icon.png",
+        "icon": "a/a2/Don_Quixote_Icon.png",
         "identities": 
         [
             {
                 "name": "[LCB Sinner] Don Quixote",
                 "rarity": 0,
-                "damageType": "None",
+                "damageTypes": [],
+                "sinTypes": [],
                 "image":""
             },
             {
                 "name": "[Shi Assoc. South Section 5 Director] Don Quixote",
                 "rarity": 1,
-                "damageType": "None",
+                "damageTypes": [],
+                "sinTypes": [],
                 "image":""
             },
             {
                 "name": "[W Crop. L3 Cleanup Agent] Don Quixote",
                 "rarity": 2,
-                "damageType": "None",
+                "damageTypes": [],
+                "sinTypes": [],
                 "image":""
             }
         ]
@@ -80,13 +89,14 @@
     {
         "id": 3,
         "name": "Ryoshu",
-        "icon": "sinner_icons/Ryoshu_Icon.png",
+        "icon": "f/f9/Ryoshu_Icon.png",
         "identities": 
         [
             {
                 "name": "[LCB Sinner] Ryoshu",
                 "rarity": 0,
-                "damageType": "None",
+                "damageTypes": [],
+                "sinTypes": [],
                 "image":""
             }
         ]
@@ -94,13 +104,14 @@
     {
         "id": 4,
         "name": "Meursault",
-        "icon": "sinner_icons/Meursault_Icon.png",
+        "icon": "1/13/Meursault_Icon.png",
         "identities": 
         [
             {
                 "name": "[LCB Sinner] Meursault",
                 "rarity": 0,
-                "damageType": "None",
+                "damageTypes": [],
+                "sinTypes": [],
                 "image":""
             }
         ]
@@ -108,13 +119,14 @@
     {
         "id": 5,
         "name": "Hong Lu",
-        "icon": "sinner_icons/Hong_Lu_Icon.png",
+        "icon": "2/23/Hong_Lu_Icon.png",
         "identities": 
         [
             {
                 "name": "[LCB Sinner] Hong Lu",
                 "rarity": 0,
-                "damageType": "None",
+                "damageTypes": [],
+                "sinTypes": [],
                 "image":""
             }
         ]
@@ -122,13 +134,14 @@
     {
         "id": 6,
         "name": "Heathcliff",
-        "icon": "sinner_icons/Heathcliff_Icon.png",
+        "icon": "/b/b1/Heathcliff_Icon.png",
         "identities": 
         [
             {
                 "name": "[LCB Sinner] Heathcliff",
                 "rarity": 0,
-                "damageType": "None",
+                "damageTypes": [],
+                "sinTypes": [],
                 "image":""
             }
         ]
@@ -136,13 +149,14 @@
     {
         "id": 7,
         "name": "Ishmael",
-        "icon": "sinner_icons/Ishmael_Icon.png",
+        "icon": "c/ca/Ishmael_Icon.png",
         "identities": 
         [
             {
                 "name": "[LCB Sinner] Ishmael",
                 "rarity": 0,
-                "damageType": "None",
+                "damageTypes": [],
+                "sinTypes": [],
                 "image":""
             }
         ]
@@ -150,13 +164,14 @@
     {
         "id": 8,
         "name": "Rodion",
-        "icon": "sinner_icons/Rodion_Icon.png",
+        "icon": "a/a7/Rodion_Icon.png",
         "identities": 
         [
             {
                 "name": "[LCB Sinner] Rodion",
                 "rarity": 0,
-                "damageType": "None",
+                "damageTypes": [],
+                "sinTypes": [],
                 "image":""
             }
         ]
@@ -164,13 +179,14 @@
     {
         "id": 9,
         "name": "Sinclair",
-        "icon": "sinner_icons/Sinclair_Icon.png",
+        "icon": "4/4e/Sinclair_Icon.png",
         "identities": 
         [
             {
                 "name": "[LCB Sinner] Sinclair",
                 "rarity": 0,
-                "damageType": "None",
+                "damageTypes": [],
+                "sinTypes": [],
                 "image":""
             }
         ]
@@ -178,13 +194,14 @@
     {
         "id": 10,
         "name": "Outis",
-        "icon": "sinner_icons/Outis_Icon.png",
+        "icon": "1/17/Outis_Icon.png",
         "identities": 
         [
             {
                 "name": "[LCB Sinner] Outis",
                 "rarity": 0,
-                "damageType": "None",
+                "damageTypes": [],
+                "sinTypes": [],
                 "image":""
             }
         ]
@@ -192,13 +209,14 @@
     {
         "id": 11,
         "name": "Gregor",
-        "icon": "sinner_icons/Gregor_Icon.png",
+        "icon": "a/ad/Gregor_Icon.png",
         "identities": 
         [
             {
                 "name": "[LCB Sinner] Gregor",
                 "rarity": 0,
-                "damageType": "None",
+                "damageTypes": [],
+                "sinTypes": [],
                 "image":""
             }
         ]

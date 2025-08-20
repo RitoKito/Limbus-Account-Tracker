@@ -1,4 +1,5 @@
 import './identity-card.css'
+import { WIKI_BASE_IMAGE_URL } from '../../../config';
 
 const rarityLabels = {
     0: "0",
@@ -6,11 +7,13 @@ const rarityLabels = {
     2: "000",
 }
 
-const IdentityCard = ({identityName, rarirty, image}) => {
+const IdentityCard = ({id, identity, rarirty, image, onClick}) => {
+    const identityID = id;
     return (
         <div className='identity-card'>
-            <h2 className='identity-name'>{identityName}</h2>
+            <h2 className='identity-name'>{identity.name}</h2>
             <h2 className='identity-rarity'>{rarityLabels[rarirty]}</h2>
+            <img src={`${WIKI_BASE_IMAGE_URL + identity.image}`}/>
         </div>
     )
 }

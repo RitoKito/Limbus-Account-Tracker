@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -17,6 +17,7 @@ const App = () => {
   const [filters, setFilters] = useState({
     rarities: [],
     damageTypes: [],
+    sinTypes: [],
     sinnerNames: [],
     searchTerm: '',
   });
@@ -55,6 +56,10 @@ const App = () => {
     toggleFilter('damageTypes', type);
   };
 
+  const toggleSinType = (type) => {
+    toggleFilter('sinTypes', type);
+  }
+
   const toggleSinner = (sinner) => {
     toggleFilter('sinnerNames', sinner)
   }
@@ -80,7 +85,7 @@ const App = () => {
     }, 0);
 
     setFilterCounter(filterCount);
-  }, [filters, sinners])
+  }, [filters, sinners]);
 
 
   return (
@@ -98,6 +103,7 @@ const App = () => {
           sinners={sinners}
           toggleRarity={toggleRarity}
           toggleDamageType={toggleDamageType}
+          toggleSin={toggleSinType}
           toggleSinner={toggleSinner}
           setSearchTerm={setSearchTerm}
           clearFilters={clearFilters}
