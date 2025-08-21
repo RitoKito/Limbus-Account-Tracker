@@ -2,7 +2,7 @@ import "./sinner-panel.css"
 import IdentityCard from "./identity-card/identity-card"
 import { WIKI_BASE_IMAGE_URL } from "../../config"
 
-const SinnerPanel = ({sinner}) => {
+const SinnerPanel = ({sinner, onIdCardClick, cardSize}) => {
   const iconPath = '/src/assets/icons/'
 
   return(
@@ -14,12 +14,14 @@ const SinnerPanel = ({sinner}) => {
       </div>
 
       <section className='identity-cards hbox'>
-          {sinner.identities.map((identity, index) => (
+          {sinner.identities.map((identity) => (
             <IdentityCard
-              id={index}
-              key={identity.name}
+              key={identity.id}
+              sinner={sinner}
               identity={identity}
               rarirty={identity.rarity}
+              onClick={onIdCardClick}
+              cardSize={cardSize}
             />
           ))}
       </section>

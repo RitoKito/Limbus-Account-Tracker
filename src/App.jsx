@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -10,7 +10,15 @@ import useFilteredSinners from './hooks/useFilteredSinners.jsx'
 
 import characterData from "./data/data.json"
 
+import { AccountStateContext } from './context/AccountStateContext.jsx'
+import AccountStateWidget from './components/account-state-widget/AccountStateWidget.jsx'
+
 const App = () => {
+  const { accountState, addToWishlist } = useContext(AccountStateContext);
+
+  useEffect(() => {
+    console.log(accountState);
+  }, [accountState])
 
   const [sinners, setSinners] = useState([]);
 
@@ -25,7 +33,16 @@ const App = () => {
   const [filterCount, setFilterCounter] = useState(0);
 
   useEffect(() => {
-    setSinners(characterData);
+    // Set id to each identity on load
+    const dataWithIds = characterData.map(sinner => ({
+      ...sinner,
+      identities: sinner.identities.map((identity, index) => ({
+        id: index,
+        ...identity
+      }))
+    }));
+
+    setSinners(dataWithIds);
   }, []);
 
   const toggleFilter = (category, value) => {
@@ -90,6 +107,9 @@ const App = () => {
 
   return (
     <main className='main-content vbox'>
+
+      <AccountStateWidget/>
+
       <h1 className='title'>Identities</h1>
 
       <section>
@@ -118,8 +138,10 @@ const App = () => {
 
         {filteredSinners.sinners.map((sinner) => (
           <SinnerPanel 
-          key={sinner.id}
-          sinner={sinner}/>
+            key={sinner.id}
+            sinner={sinner}
+            onIdCardClick={addToWishlist}
+            />
         ))}
       </section>
     </main>

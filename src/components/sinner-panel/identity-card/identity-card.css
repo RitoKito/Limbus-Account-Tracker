@@ -7,6 +7,12 @@
     overflow: hidden;
 }
 
+.identity-card.widget {
+  max-width: 75px;
+  max-height: 100px;
+  transform-origin: top left;
+}
+
 .identity-name {
     position: absolute;
     bottom: 0px;
@@ -21,6 +27,11 @@
     padding: 10px;
     font-size: 16px;
     pointer-events: none;
+}
+
+.widget > .identity-name,
+.widget > .identity-rarity {
+    visibility: hidden;
 }
 
 .identity-card img{
