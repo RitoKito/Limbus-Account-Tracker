@@ -1,79 +1,155 @@
-import React, { createContext, useState, useEffect, Children } from 'react';
+import { createContext, useState, useEffect, useCallback, useMemo } from 'react';
 
 export const AccountStateContext = createContext();
 
 export const AccountStateProvider = ({children}) => {
-    const defaultAccountState = {
-        shards: {},
-        nomCrate: 0,
-        ownedIds: {},
-        wishlist: [],
-    }
 
-    const [accountState, setAccountState] = useState(defaultAccountState);
+  const defaultAccountState = {
+    owned: [],
+    wishlist: [],
+    shards: [],
+    nomCrate: 0,
+  };
 
-    useEffect(() => {
-        const stored = localStorage.getItem('accountState');
-        if(stored) {
-            setAccountState(JSON.parse(stored));
+  const [accountState, setAccountState] = useState(() => {
+    const stored = null; // localStorage.getItem('accountState') disabled for now
+    return stored ? JSON.parse(stored) : defaultAccountState;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("accountState", JSON.stringify(accountState));
+  }, [accountState]);
+
+  const addToWishlist = useCallback((sinnerObj, identity) => {
+    setAccountState(prev => {
+      const wishlist = prev.wishlist || [];
+
+      const sinnerIndex = wishlist.findIndex(sinner => sinner.id === sinnerObj.id);
+
+      if(sinnerIndex === -1) {
+        const newSinner = {...sinnerObj, identities: [identity] };
+
+        let insertIndex = wishlist.findIndex(s => s.id > newSinner.id);
+        if(insertIndex === -1) { insertIndex = wishlist.length; }
+
+        const updatedWishlist = [
+          ...wishlist.slice(0, insertIndex),
+          newSinner,
+          ...wishlist.slice(insertIndex)
+        ];
+
+        return {
+          ...prev,
+          wishlist: updatedWishlist
+        };
+      }
+      else {
+        const sinnerData = wishlist[sinnerIndex];
+        const identities = sinnerData.identities || [];
+
+        if(identities.some(i => i.id === identity.id)){
+          return prev;
         }
-    }, []);
 
-    useEffect(() => {
-        localStorage.setItem("accountState", JSON.stringify(accountState));
-    }, [accountState])
+        const updatedSinner = {
+          ...sinnerData,
+          identities: [...identities, identity]
+        };
 
-    const addToWishlist = (sinnerObj, identity) => {
-        setAccountState(prev => {
-            const wishlist = prev.wishlist || [];
+        const updatedWishlist = [
+          ...wishlist.slice(0, sinnerIndex),
+          updatedSinner,
+          ...wishlist.slice(sinnerIndex + 1)
+        ];
 
-            const sinnerIndex = wishlist.findIndex(sinner => sinner.id === sinnerObj.id);
+        return {
+          ...prev,
+          wishlist: updatedWishlist
+        };
+      }
+    });
+  }, []);
 
-            if(sinnerIndex === -1) {
-                return {
-                    ...prev,
-                    wishlist: [
-                        ...wishlist,
-                        {
-                            ...sinnerObj,
-                            identities: [identity]
-                        }
-                    ]
-                };
-            }
-            else {
-                const sinnerData = wishlist[sinnerIndex];
-                const identities = sinnerData.identities || [];
+  const removeFromWishlist = useCallback((sinnerObj, identinty) => {
+    setAccountState(prev => {
+      const wishlist = prev.wishlist || [];
 
-                if(identities.some(i => i.id === identity.id)){
-                    return prev;
-                }
+      const sinnerIndex = wishlist.findIndex(sinner => sinner.id === sinnerObj.id);
 
-                const updatedSinner = {
-                    ...sinnerData,
-                    identities: [...identities, identity]
-                };
+      if(sinnerIndex === -1) {
+        return prev;
+      }
+      else {
+        const sinnerData = wishlist[sinnerIndex];
+        const identities = sinnerData.identities || [];
 
-                const updatedWishlist = [
-                    ...wishlist.slice(0, sinnerIndex),
-                    updatedSinner,
-                    ...wishlist.slice(sinnerIndex + 1)
-                ]
+        const updatedIdentities = identities.filter(i => i.id !== identinty.id);
 
-                return {
-                    ...prev,
-                    wishlist: updatedWishlist
-                };
-            }
-        });
-    }
+        if(updatedIdentities.length === identities.length){
+          return prev;
+        }
+        else if(updatedIdentities.length === 0){
+          return {
+            ...prev,
+            wishlist: [
+              ...wishlist.slice(0, sinnerIndex),
+              ...wishlist.slice(sinnerIndex + 1)
+            ]
+          }
+        }
 
-    const removeFromWishlist = (sinner, identinty) => {
-    }
+        const updatedSinner = {
+          ...sinnerData,
+          identities: updatedIdentities
+        };
 
-    return (
-        <AccountStateContext.Provider value={{accountState, addToWishlist, removeFromWishlist}}>
-            {children}
-        </AccountStateContext.Provider>
-    );
-}
+        const updatedWishlist = [
+          ...wishlist.slice(0, sinnerIndex),
+          updatedSinner,
+          ...wishlist.slice(sinnerIndex + 1)
+        ];
+
+        return {
+          ...prev,
+          wishlist: updatedWishlist
+        };
+      }
+    });
+  }, []);
+
+	const wishlistSet = useMemo(() => {
+		const sinnersMap = {};
+
+		(accountState.wishlist || []).forEach(sinner => {
+			sinnersMap[sinner.id] = { identities: new Set((sinner.identities || []).map(identinty => identinty.id)) };
+		});
+
+		return {
+			sinners: sinnersMap
+		};
+	}, [accountState.wishlist]);
+
+  const accountContextValue = useMemo(() => ({
+		owned: accountState.owned,
+		wishlist: accountState.wishlist,
+		nomCrate: accountState.nomCrate,
+		shards: accountState.shards,
+		addToWishlist,
+		removeFromWishlist,
+		wishlistSet,
+  }), [
+		accountState.owned,
+		accountState.wishlist,
+		accountState.nomCrate,
+		accountState.shards,
+		addToWishlist,
+		removeFromWishlist,
+		wishlistSet,
+	]);
+
+  return (
+    <AccountStateContext.Provider value={accountContextValue}>
+			{children}
+    </AccountStateContext.Provider>
+  );
+};

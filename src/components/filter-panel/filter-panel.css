@@ -31,7 +31,7 @@
   padding-right: 10px;
   font-size: 16px;
   border-radius: 4px;
-  color: white;
+  color: #ffffff;
 }
 
 .search-input::placeholder {
@@ -45,7 +45,7 @@
   border-style: none;
   font-size: 16px;
   border-radius: 4px;
-  color: rgb(225, 225, 225);
+  color: #e1e1e1;
   transition: color 0.3s;
 }
 

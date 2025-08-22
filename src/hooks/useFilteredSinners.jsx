@@ -54,33 +54,33 @@ const filterBySearchTerm = (sinners, term) => {
 }
 
 const useFilteredSinners = (sinners, filters) => {
-    const [filteredSinners, setFilteredSinners] = useState([]);
-    const [filteredIdsCount, setFilteredIdsCount] = useState(0);
+  const [filteredSinners, setFilteredSinners] = useState([]);
+  const [filteredIdsCount, setFilteredIdsCount] = useState(0);
 
-    useEffect(() => {
-      let totalIdCount = 0;
+  useEffect(() => {
+    let totalIdCount = 0;
 
-      if(noFiltersApplied(filters)) {
+    if(noFiltersApplied(filters)) {
 
-        setFilteredSinners(sinners);
+      setFilteredSinners(sinners);
 
-        totalIdCount = sinners.reduce((acc, sinner) => acc + sinner.identities.length, 0);
-        setFilteredIdsCount(totalIdCount);
-      }
-      else {
-        let filtered = [...sinners];
+      totalIdCount = sinners.reduce((acc, sinner) => acc + sinner.identities.length, 0);
+      setFilteredIdsCount(totalIdCount);
+    }
+    else {
+      let filtered = [...sinners];
 
-        filtered = filterSinnersByName(filtered, filters.sinnerNames);
-        filtered = filterByRarityAndType(filtered, filters.rarities, filters.damageTypes, filters.sinTypes);
-        
-        const term = filters.searchTerm.trim().toLowerCase();
-        filtered = filterBySearchTerm(filtered, term);
+      filtered = filterSinnersByName(filtered, filters.sinnerNames);
+      filtered = filterByRarityAndType(filtered, filters.rarities, filters.damageTypes, filters.sinTypes);
+      
+      const term = filters.searchTerm.trim().toLowerCase();
+      filtered = filterBySearchTerm(filtered, term);
 
-        totalIdCount = filtered.reduce((acc, sinner) => acc + sinner.identities.length, 0);
+      totalIdCount = filtered.reduce((acc, sinner) => acc + sinner.identities.length, 0);
 
-        setFilteredSinners(filtered);
-        setFilteredIdsCount(totalIdCount);
-      }
+      setFilteredSinners(filtered);
+      setFilteredIdsCount(totalIdCount);
+    }
   }, [sinners, filters]);
 
   return {sinners: filteredSinners, idCount: filteredIdsCount};

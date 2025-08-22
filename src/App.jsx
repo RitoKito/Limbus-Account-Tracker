@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -14,11 +14,16 @@ import { AccountStateContext } from './context/AccountStateContext.jsx'
 import AccountStateWidget from './components/account-state-widget/AccountStateWidget.jsx'
 
 const App = () => {
-  const { accountState, addToWishlist } = useContext(AccountStateContext);
+  const { addToWishlist, removeFromWishlist, wishlistSet } = useContext(AccountStateContext);
+  const wishlistHandlers = useMemo(() => ({
+    add: addToWishlist,
+    remove: removeFromWishlist,
+  }), [addToWishlist, removeFromWishlist]);
 
-  useEffect(() => {
+  /*useEffect(() => {
+    console.log("Account State Updated")
     console.log(accountState);
-  }, [accountState])
+  }, [accountState])*/
 
   const [sinners, setSinners] = useState([]);
 
@@ -108,7 +113,10 @@ const App = () => {
   return (
     <main className='main-content vbox'>
 
-      <AccountStateWidget/>
+      <AccountStateWidget 
+        wishlistHandlers={wishlistHandlers}
+        wishlistSet={wishlistSet}
+      />
 
       <h1 className='title'>Identities</h1>
 
@@ -117,7 +125,7 @@ const App = () => {
         <h2 className='section-title'>
           {`Filters (${filterCount})`}
         </h2>
-
+        {console.log(wishlistSet)}
         <FilterPanel
           filters={filters}
           sinners={sinners}
@@ -135,13 +143,13 @@ const App = () => {
         <h2 className='section-title'>
           {`Filtered Identities (${filteredSinners.idCount}):`}
         </h2>
-
         {filteredSinners.sinners.map((sinner) => (
           <SinnerPanel 
             key={sinner.id}
             sinner={sinner}
-            onIdCardClick={addToWishlist}
-            />
+            wishlistHandlers={wishlistHandlers}
+            wishlistSet = {wishlistSet.sinners[sinner.id]?.identities??new Set()}
+          />
         ))}
       </section>
     </main>

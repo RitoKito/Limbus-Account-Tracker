@@ -24,92 +24,93 @@ const sinTypes = [
 ]
 
 const FilterPanel = ({ filters, sinners, toggleRarity, toggleDamageType, toggleSin, toggleSinner, setSearchTerm, clearFilters }) => {
-    const filterPanelConfigs = [
-    {
-      className: 'rarity-panel',
-      panelName: 'Rarity',
-      data: rarities,
-      valueKey: 'rarity',
-      tooltipKey: 'tooltipText',
-      iconKey: 'icon',
-      onClick: toggleRarity,
-      selected: filters.rarities,
-    },
-    {
-      className: 'damage-type-panel',
-      panelName: 'Damage Type',
-      data: damageTypes,
-      valueKey: 'type',
-      tooltipKey: 'type',
-      iconKey: 'icon',
-      onClick: toggleDamageType,
-      selected: filters.damageTypes,
-    },
-    {
-      className: 'sin-type-panel',
-      panelName: 'Sin',
-      data: sinTypes,
-      valueKey: 'type',
-      tooltipKey: 'type',
-      iconKey: 'icon',
-      onClick: toggleSin,
-      selected: filters.sinTypes,
-    },
-    {
-      className: 'sinner-panel',
-      panelName: 'Sinner',
-      data: sinners,
-      valueKey: 'name',
-      tooltipKey: 'name',
-      iconKey: 'icon',
-      onClick: toggleSinner,
-      selected: filters.sinnerNames,
-    },
+  const filterPanelConfigs = [
+  {
+    className: 'rarity-panel',
+    panelName: 'Rarity',
+    data: rarities,
+    valueKey: 'rarity',
+    tooltipKey: 'tooltipText',
+    iconKey: 'icon',
+    onClick: toggleRarity,
+    selected: filters.rarities,
+  },
+  {
+    className: 'damage-type-panel',
+    panelName: 'Damage Type',
+    data: damageTypes,
+    valueKey: 'type',
+    tooltipKey: 'type',
+    iconKey: 'icon',
+    onClick: toggleDamageType,
+    selected: filters.damageTypes,
+  },
+  {
+    className: 'sin-type-panel',
+    panelName: 'Sin',
+    data: sinTypes,
+    valueKey: 'type',
+    tooltipKey: 'type',
+    iconKey: 'icon',
+    onClick: toggleSin,
+    selected: filters.sinTypes,
+  },
+  {
+    className: 'sinner-panel',
+    panelName: 'Sinner',
+    data: sinners,
+    valueKey: 'name',
+    tooltipKey: 'name',
+    iconKey: 'icon',
+    onClick: toggleSinner,
+    selected: filters.sinnerNames,
+  },
   ];
-
+  
   return(
-    <div className='vbox'>
+  <div className='vbox'>
 
-      <div className='search-filter-container'>
-        <input 
-          className='search-input' 
-          type="text"
-          placeholder='Search by name...' 
-          onChange={(e) => setSearchTerm(e.target.value)}/>
-        <button className='reset-filters-btn' onClick={clearFilters}>
-          Clear Filters
-        </button>
-      </div>
-      
-      <section className='filter-panel'>
-        {filterPanelConfigs.map(({ className, panelName, data, valueKey, tooltipKey, iconKey, onClick, selected }) => (
-          <div key={className} className={className}>
-            <div className='vbox'>
-
-              <h3 className='filter-btns-section'>{panelName}</h3>
-
-              <div className='filter-btns-container'>
-                {data.map(buttonDataObj => {
-                  const value = buttonDataObj[valueKey];
-                  return (
-                    <FilterButton
-                      key={value}
-                      value={value}
-                      icon={buttonDataObj[iconKey]}
-                      tooltipText={buttonDataObj[tooltipKey]}
-                      onClick={() => onClick(value)}
-                      isSelected={selected.includes(value)}
-                    />
-                  );
-                })}
-              </div>
-              
-            </div>
-          </div>
-        ))}
-      </section>
-      
+    <div className='search-filter-container'>
+    <input
+      id="search-input"
+      className='search-input' 
+      type="text"
+      placeholder='Search by name...' 
+      onChange={(e) => setSearchTerm(e.target.value)}/>
+    <button className='reset-filters-btn' onClick={clearFilters}>
+      Clear Filters
+    </button>
     </div>
+    
+    <section className='filter-panel'>
+    {filterPanelConfigs.map(({ className, panelName, data, valueKey, tooltipKey, iconKey, onClick, selected }) => (
+      <div key={className} className={className}>
+      <div className='vbox'>
+
+        <h3 className='filter-btns-section'>{panelName}</h3>
+
+        <div className='filter-btns-container'>
+        {data.map(buttonDataObj => {
+          const value = buttonDataObj[valueKey];
+          return (
+          <FilterButton
+            key={value}
+            value={value}
+            icon={buttonDataObj[iconKey]}
+            tooltipText={buttonDataObj[tooltipKey]}
+            onClick={() => onClick(value)}
+            isSelected={selected.includes(value)}
+          />
+          );
+        })}
+        </div>
+        
+      </div>
+      </div>
+    ))}
+    </section>
+    
+  </div>
   )
 }
 

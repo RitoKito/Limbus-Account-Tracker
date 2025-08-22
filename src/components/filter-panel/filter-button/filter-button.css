@@ -14,8 +14,8 @@
 }
 
 .filter-button.toggled {
-    background-color: #576980;
-    border-bottom: 2px solid orange;
+  background-color: #576980;
+  border-bottom: 2px solid orange;
 }
 
 .filter-button:hover {
