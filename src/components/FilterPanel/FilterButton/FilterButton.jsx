@@ -1,5 +1,4 @@
-import './filter-button.css'
-import { WIKI_BASE_IMAGE_URL } from '../../../config';
+import './FilterButton.css'
 
 const FilterButton = ({ value, isSelected, onClick, icon, tooltipText }) => {
   const handleClick = () => {
@@ -9,7 +8,7 @@ const FilterButton = ({ value, isSelected, onClick, icon, tooltipText }) => {
   return (
     <div className='filter-button-container'>
       <button className={`filter-button ${isSelected?'toggled':''}`} onClick={() => handleClick()}>
-        <img src={WIKI_BASE_IMAGE_URL + icon}></img>
+        <img src={icon}></img>
       </button>
       <span className='tooltip-text'>{tooltipText}</span>
     </div>

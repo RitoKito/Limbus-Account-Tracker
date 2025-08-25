@@ -5,6 +5,16 @@
   height: 200px;
   border-radius: 10px;
   color: white;
+  user-select: none;
+
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px  1px 0 #000,
+    1px  1px 0 #000;
+}
+
+.card-details {
   overflow: hidden;
 }
 
@@ -15,25 +25,44 @@
 }
 
 .identity-card.widget {
-  max-width: 75px;
-  max-height: 100px;
+  width: 75px;
+  height: 100px;
   transform-origin: top left;
 }
 
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .identity-name {
+  width: 100%;
   position: absolute;
   bottom: 0px;
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 150px;
 }
 
 .identity-rarity,
-.identity-name {
+.identity-name,
+.identity-status {
   padding: 10px;
-  font-size: 16px;
+  font-size: 14px;
   pointer-events: none;
+}
+
+.identity-status.owned {
+  color: #228B22;
+}
+
+.identity-status.wishlisted {
+  color: #daa520;
+}
+
+.identity-status.unowned{
+  color: #dc143c;
 }
 
 .widget > .card-details{
@@ -58,10 +87,9 @@
 }
 
 .card-interactables {
-	width: 100%;
-	height: 100%;
 	transition: opacity  0.3s ease;
 	opacity: 0;
+  scale: 1.05;
 	z-index: 10;
 }
 
@@ -72,29 +100,42 @@
 .card-interactable {
   width: 100%;
   height: 50%;
-  background-color: black;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	font-size: 1.25em;
+	font-size: 1.20em;
 	font-weight: bold;
 	background-color: rgb(0, 0, 0, 0.6);
-	filter: brightness(80%);
+	filter: brightness(60%);
 	transition: background-color 0.3s ease, filter 0.3s ease;
 }
 
 .card-interactable:hover {
 	background-color: rgb(0, 0, 0, 0.8);
-		filter: brightness(100%);
+  filter: brightness(100%);
 }
 
-.card-interactable.widget {
-	width: 100%;
-	height: 50%;
-	font-size: 0.6em;
+.identity-card.widget .card-interactable {
+  width: 100%;
+  height: 50%;
+  font-size: 0.6em;
 }
 
 .card-interactable > span {
 	pointer-events: none;
+  user-select: none;
+}
+
+.card-interactable.top {
+  border-radius: 10px 10px 0 0;
+}
+
+.card-interactable.bottom {
+  border-radius: 0 0 10px 10px;
+}
+
+.single {
+  border-radius: 10px;
+  height: 100%;
 }

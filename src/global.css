@@ -1,3 +1,13 @@
+:root {
+  --sidebar-width: 200px;
+}
+
+@media (max-width: 425px) {
+  :root {
+    --sidebar-width: 100px;
+  }
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,10 +15,19 @@
 }
 
 body {
-  padding: 40px;
   background-color: #232A32;
   font-family: sans-serif;
   color: white;
+}
+
+.layout {
+  display: flex;
+  flex-direction: row;
+}
+
+.content-wrapper {
+  margin-top: 50px;
+  margin-left: calc(50px + var(--sidebar-width))
 }
 
 .hbox {
@@ -28,10 +47,6 @@ body {
 .title,
 .main-content section {
   margin-bottom: 20px;
-}
-
-.title {
-  font-size: 32px;
 }
 
 .section-title {

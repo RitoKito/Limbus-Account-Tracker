@@ -1,0 +1,23 @@
+.sinner-heading {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.sinner-icon {
+  height: 30px;
+  width: 30px;
+}
+
+.dispensable {
+  font-size: 14px;
+  color: #2da5d4;
+}
+
+.dispensable.full {
+  color: #228B22;
+}
+
+.dispensable.half {
+  color: #daa520;
+}
