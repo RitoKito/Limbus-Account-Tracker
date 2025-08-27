@@ -78,7 +78,7 @@ const ImportPanel = ({ importAccountState, exportAccountState, resetAccountState
 			<div className='string-import-container'>
 				<input 
 					onChange={(e) => setInputValue(e.target.value)} 
-					placeholder='Enter Import String...' 
+					placeholder='Paste import string...' 
 					value={inputValue}
 				/>
 

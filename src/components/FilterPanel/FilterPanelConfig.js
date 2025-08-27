@@ -1,25 +1,26 @@
-import { WIKI_BASE_IMAGE_URL } from "@/constants/ImagePaths";
+import { BASE_IMAGE_PATH } from "@/constants/ImagePaths";
+import { DAMAGE_TYPE_ICONS, RARITY_ICONS, SIN_ICONS } from "../../constants/ImagePaths";
 
 export const RARITY_IMAGE_URL = [
-  { rarity: 0, tooltipText: "0", icon: WIKI_BASE_IMAGE_URL + "IDNumber1.png" },
-  { rarity: 1, tooltipText: "00", icon: WIKI_BASE_IMAGE_URL + "IDNumber2.png" },
-  { rarity: 2, tooltipText: "000", icon: WIKI_BASE_IMAGE_URL + "IDNumber3.png" },
+  { rarity: 0, tooltipText: "0", icon: RARITY_ICONS + "rarity_1.png" },
+  { rarity: 1, tooltipText: "00", icon: RARITY_ICONS + "rarity_2.png" },
+  { rarity: 2, tooltipText: "000", icon: RARITY_ICONS + "rarity_3.png" },
 ]
 
 export const DAMAGE_TYPE_URL = [
-	{ type: "Blunt", icon: WIKI_BASE_IMAGE_URL + "Blunt.png" },
-  { type: "Slash", icon: WIKI_BASE_IMAGE_URL + "Slash.png" },
-  { type: "Pierce", icon: WIKI_BASE_IMAGE_URL + "Pierce.png" },
+	{ type: "Blunt", icon: DAMAGE_TYPE_ICONS + "Blunt.png" },
+  { type: "Slash", icon: DAMAGE_TYPE_ICONS + "Slash.png" },
+  { type: "Pierce", icon: DAMAGE_TYPE_ICONS + "Pierce.png" },
 ]
 
 export const SIN_TYPE_URL = [
-	{type: "Wrath", icon: WIKI_BASE_IMAGE_URL + "LcbSinWrath.png"},
-  {type: "Lust", icon: WIKI_BASE_IMAGE_URL + "LcbSinLust.png"},
-  {type: "Sloth", icon: WIKI_BASE_IMAGE_URL + "LcbSinSloth.png"},
-  {type: "Glut", icon: WIKI_BASE_IMAGE_URL + "LcbSinGluttony.png"},
-  {type: "Gloom", icon: WIKI_BASE_IMAGE_URL + "LcbSinGloom.png"},
-  {type: "Pride", icon: WIKI_BASE_IMAGE_URL + "LcbSinPride.png"},
-  {type: "Envy", icon: WIKI_BASE_IMAGE_URL + "LcbSinEnvy.png"},
+	{type: "Wrath", icon: SIN_ICONS + "Wrath.png"},
+  {type: "Lust", icon: SIN_ICONS + "Lust.png"},
+  {type: "Sloth", icon: SIN_ICONS + "Sloth.png"},
+  {type: "Gluttony", icon: SIN_ICONS + "Gluttony.png"},
+  {type: "Gloom", icon: SIN_ICONS + "Gloom.png"},
+  {type: "Pride", icon: SIN_ICONS + "Pride.png"},
+  {type: "Envy", icon: SIN_ICONS + "Envy.png"},
 ]
 
 export const getFilterPanelConfigs = ({ filters, sinners, toggleRarity, toggleDamageType, toggleSin, toggleSinner }) => [

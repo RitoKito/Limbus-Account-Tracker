@@ -61,6 +61,8 @@ const FilterPanel = ({
         </div>
       ))}
     </section>
+
+    <h3 className='filter-btns-section'>Filter by Owned / Wishlisted</h3>
     <section className='filter-account-state'>
       <FilterButton 
         width='100px' 

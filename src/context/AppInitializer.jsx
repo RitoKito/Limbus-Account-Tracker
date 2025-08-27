@@ -4,12 +4,16 @@ import { AccountStateContext } from "./AccountStateContext";
 import characterData from "@/data/data.json";
 import App from "@/App";
 import { DispensableProvider } from "./DispensableContext";
-import { WIKI_BASE_IMAGE_URL } from "@/config";
+import { BASE_IMAGE_PATH, IDENTITY_IMAGE_PATH, SINNER_ICONS_PATH } from "../constants/ImagePaths";
 
 export function AppInitializerInner({ onInit }) {
 	const [sinners, setSinners] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const { setSinnerShards } = useContext(AccountStateContext);
+
+	useEffect(() => {
+		document.title = "Limbus Account Tracker"
+	}, [])
 
 	useEffect(() => {
 		// Set id to each identity on load
@@ -18,11 +22,11 @@ export function AppInitializerInner({ onInit }) {
 			
 			return {
 			...sinner,
-			icon: `${WIKI_BASE_IMAGE_URL}${sinner.icon}`,
+			icon: `${SINNER_ICONS_PATH}${sinner.icon}`,
 			identities: sinner.identities.map((identity, index) => ({
 				id: index,
 				...identity,
-				image: `${WIKI_BASE_IMAGE_URL}${identity.image}`
+				image: `${IDENTITY_IMAGE_PATH}${identity.image}`
 			})).sort((a,b) => b.rarity - a.rarity)} // Display identities from highest to lowest rarity
 		});
 

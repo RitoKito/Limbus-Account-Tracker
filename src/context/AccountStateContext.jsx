@@ -15,8 +15,8 @@ export const AccountStateProvider = ({children}) => {
 
   const [accountState, setAccountState] = useState(() => {
     const stored = localStorage.getItem('accountState');
-    //return stored ? JSON.parse(stored) : defaultAccountState;
-    return defaultAccountState;
+    return stored ? JSON.parse(stored) : defaultAccountState;
+    //return defaultAccountState;
   });
 
   const timeoutTime = 3000;
@@ -56,6 +56,7 @@ export const AccountStateProvider = ({children}) => {
   }
 
   const resetAccountState = useCallback(() => {
+    localStorage.clear();
     setAccountState(defaultAccountState);
   })
 

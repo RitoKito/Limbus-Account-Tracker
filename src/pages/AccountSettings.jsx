@@ -52,13 +52,67 @@ const AccountSettings = () => {
     sinTypes: [],
     sinnerNames: [],
     searchTerm: '',
-  });
+  }, []);
 
   const [initDone, setInitDone] = useState(false);
 
   const [filterCount, setFilterCounter] = useState(0);
 
-  const toggleFilter = (category, value) => {
+  const filteredSinners = useFilteredSinners(sinners, filters)
+
+  // Mark 0 rarity IDs owned
+  // as all players own them by default
+  useEffect(() => {
+    if(!initDone){
+      Object.values(sinners).forEach(sinner => {
+        sinner.identities
+          .filter(identity => identity.rarity === 0)
+          .forEach(identity => {markOwned(sinner, identity)});
+      });
+
+     setInitDone(true);
+    };
+
+  }, [sinners, initDone]);
+
+  useEffect(() => {
+    if (initDone) {
+      setNewDefaultState();
+    }
+  }, [initDone])
+
+  useEffect(() => {
+    const filterCount = Object.entries(filters).reduce((acc, [key, value]) => {
+      if(key === 'searchTerm') return acc;
+      return acc + (Array.isArray(value) ? value.length : 0)
+    }, 0);
+
+    setFilterCounter(filterCount);
+  }, [filters, sinners]);
+
+  // Update Owned and Wishlist
+  // Filters when identities
+  // removed from respective
+  // filter sets
+  useEffect(() => {
+    if(filters.ownedEnabled) {
+      setFilters(prev => ({
+        ...prev,
+        owned:ownedSet,
+      }));
+    }
+  }, [ownedSet]);
+
+  useEffect(() => {
+    if(filters.wishlistedEnabled) {
+      setFilters(prev => ({
+        ...prev,
+        wishlisted:wishlistSet,
+      }));
+    }
+  }, [wishlistSet]);
+
+    const toggleFilter = (category, value) => {
     setFilters(prev => {
       const currentValues = prev[category];
 
@@ -129,37 +183,6 @@ const AccountSettings = () => {
       sinnerNames: [],
     }));
   }
-  const filteredSinners = useFilteredSinners(sinners, filters)
-
-  // Mark 0 rarity IDs owned
-  // as all players own them by default
-  useEffect(() => {
-    if(!initDone){
-      Object.values(sinners).forEach(sinner => {
-        sinner.identities
-          .filter(identity => identity.rarity === 0)
-          .forEach(identity => {markOwned(sinner, identity)});
-      });
-
-     setInitDone(true);
-    };
-
-  }, [sinners, initDone]);
-
-  useEffect(() => {
-    if (initDone) {
-      setNewDefaultState();
-    }
-  }, [initDone])
-
-  useEffect(() => {
-    const filterCount = Object.entries(filters).reduce((acc, [key, value]) => {
-      if(key === 'searchTerm') return acc;
-      return acc + (Array.isArray(value) ? value.length : 0)
-    }, 0);
-
-    setFilterCounter(filterCount);
-  }, [filters, sinners]);
 
   const importAccountState = useCallback((accountStateString) => {
     const stateParse = JSON.parse(accountStateString);
@@ -221,7 +244,7 @@ const AccountSettings = () => {
 
   return (
     <main className='main-content'>
-      <h1 className='title'>Import/Export</h1>
+      <h1 className='title'>Import / Export</h1>
       <section>
         <ImportPanel
           importAccountState={importAccountState}

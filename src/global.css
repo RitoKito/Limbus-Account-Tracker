@@ -60,6 +60,7 @@ body {
 input {
   max-width: 200px;
   width: 100%;
+	height: 45px;
   background-color: #2e3947;
   outline: none;
   border-style: none;
@@ -75,8 +76,10 @@ input::placeholder {
 }
 
 button {
+  min-width: 70px;
   max-width: 120px;
   width: 100%;
+  min-height: 45px;
   background-color: #2e3947;
   outline: none;
   border-style: none;
