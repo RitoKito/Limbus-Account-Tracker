@@ -5,7 +5,10 @@ WIP
 WIP
 
 # How to Use
-WIP
+You can access the WebApp via GitPages link below:
+https://ritokito.github.io/Limbus-Account-Tracker/
+
+More on how to use WIP
 
 # Credits
 
