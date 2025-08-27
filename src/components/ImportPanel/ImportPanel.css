@@ -24,7 +24,22 @@ button {
 
 .export-container {
 	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.left-items,
+.right-items {
+	display: flex;
 	flex-direction: row;
 	gap: 10px;
-	flex-wrap: wrap;
+}
+
+.clear-data {
+	width: 100px;
+}
+
+.clear-data:hover {
+	background-color: rgb(121, 50, 50);
 }

@@ -10,6 +10,7 @@ import CurrencyPanel from '@/components/CurrencyPanel/CurrencyPanel.jsx'
 import { CharacterDataContext } from '@/context/CharacterDataContext'
 import { DispensableContext } from '@/context/DispensableContext'
 import ImportPanel from '@/components/ImportPanel/ImportPanel'
+import { identity } from 'lodash'
 
 const AccountSettings = () => {
   const { characters } = useContext(CharacterDataContext);
@@ -24,7 +25,7 @@ const AccountSettings = () => {
     wishlistSet,
     ownedSet,
     getExportAccountState,
-    setDefaultAccountState,
+    resetAccountState,
     setNewDefaultState,
   } = useContext(AccountStateContext);
 
@@ -103,17 +104,27 @@ const AccountSettings = () => {
   }
   const filteredSinners = useFilteredSinners(sinners, filters)
 
+  const [initDone, setInitDone] = useState(false);
   // Mark 0 rarity IDs owned
   // as all players own them by default
   useEffect(() => {
-    Object.values(sinners).forEach(sinner => {
-      sinner.identities
-        .filter(identity => identity.rarity === 0)
-        .forEach(identity => {markOwned(sinner, identity)});
-    });
+    if(!initDone){
+      Object.values(sinners).forEach(sinner => {
+        sinner.identities
+          .filter(identity => identity.rarity === 0)
+          .forEach(identity => {markOwned(sinner, identity)});
+      });
 
-    setNewDefaultState();
-  }, [sinners]);
+     setInitDone(true);
+    };
+
+  }, [sinners, initDone]);
+
+  useEffect(() => {
+    if (initDone) {
+      setNewDefaultState();
+    }
+  }, [initDone])
 
   useEffect(() => {
     const filterCount = Object.entries(filters).reduce((acc, [key, value]) => {
@@ -143,13 +154,21 @@ const AccountSettings = () => {
       identityMap.set(sinner.id, innerMap);
 
       sinner.identities.forEach(identity => {
-        const i = identityMap.get(sinner.id).get(identity.id)
+        const i = identityMap.get(sinner.id).get(identity.id);
         if(identity.id === i.id){
           markOwned(sinner, i);
         }
       })
     })
 
+    stateParse.wishlist.forEach(sinner => {
+      sinner.identities.forEach(identity => {
+        const i = identityMap.get(sinner.id).get(identity.id);
+        if(identity.id === i.id){
+          addToWishlist(sinner, i);
+        }
+      })
+    })
 
   });
 
@@ -181,6 +200,7 @@ const AccountSettings = () => {
         <ImportPanel
           importAccountState={importAccountState}
           exportAccountState={exportAccountState}
+          resetAccountState={resetAccountState}
         />
       </section>
 

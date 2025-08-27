@@ -21,13 +21,15 @@ body {
 }
 
 .layout {
-  display: flex;
-  flex-direction: row;
+  width: 100%;
+  margin: 0;
+  max-width: none;
 }
 
 .content-wrapper {
   margin-top: 50px;
-  margin-left: calc(50px + var(--sidebar-width))
+  margin-left: calc(50px + var(--sidebar-width));
+  margin-right: calc(200px);
 }
 
 .hbox {

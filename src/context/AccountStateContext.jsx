@@ -15,7 +15,8 @@ export const AccountStateProvider = ({children}) => {
 
   const [accountState, setAccountState] = useState(() => {
     const stored = localStorage.getItem('accountState');
-    return stored ? JSON.parse(stored) : defaultAccountState;
+    //return stored ? JSON.parse(stored) : defaultAccountState;
+    return defaultAccountState;
   });
 
   const timeoutTime = 3000;
@@ -54,8 +55,9 @@ export const AccountStateProvider = ({children}) => {
     setDefaultAccountState(accountState);
   }
 
-  const resetAccountState = () => {
-  } 
+  const resetAccountState = useCallback(() => {
+    setAccountState(defaultAccountState);
+  })
 
   const setNomCrate = useCallback((value) => {
     setAccountState(prev => {
@@ -227,7 +229,7 @@ export const AccountStateProvider = ({children}) => {
 		wishlistSet,
     ownedSet,
     getExportAccountState,
-    setDefaultAccountState: resetAccountState,
+    resetAccountState,
     setNewDefaultState,
   }), [
     setNomCrate,

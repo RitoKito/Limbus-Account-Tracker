@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import './ImportPanel.css'
 
-const ImportPanel = ({ importAccountState, exportAccountState }) => {
+const ImportPanel = ({ importAccountState, exportAccountState, resetAccountState }) => {
 	const [inputValue, setInputValue] = useState('');
 	const [outcomeString, setOutcomeString] = useState('');
 	const [outcome, setOutcome] = useState('');
@@ -77,15 +77,24 @@ const ImportPanel = ({ importAccountState, exportAccountState }) => {
 					Import
 				</button>
 			</div>
-			
-			<div className='export-container'>
-				<button onClick={() => exportAccountState()}>
-					Download Data
-				</button>
 
-				<button>
-					Copy to Clipboard
-				</button>
+			<div className='export-container'>
+
+				<div className='left-items'>
+						<button onClick={() => exportAccountState()}>
+							Download Data
+						</button>
+
+						<button>
+							Copy to Clipboard
+						</button>
+				</div>
+
+				<div className='right-items'>
+					<button className='clear-data' onClick={resetAccountState}>
+						Clear Data
+					</button>
+				</div>
 			</div>
     </div>
   )
