@@ -1,3 +1,7 @@
+button {
+  height: 50000px;
+}
+
 .filter-panel {
   display: flex;
   flex-direction: row;
@@ -22,37 +26,6 @@
   gap: 10px;
 }
 
-.search-input {
-  width: 200px;
-  background-color: #2e3947;
-  outline: none;
-  border-style: none;
-  padding-left: 10px;
-  padding-right: 10px;
-  font-size: 16px;
-  border-radius: 4px;
-  color: #ffffff;
-}
-
-.search-input::placeholder {
-  color: rgba(255, 255, 255, 0.788);
-}
-
-.reset-filters-btn {
-  width: 120px;
-  background-color: #2e3947;
-  outline: none;
-  border-style: none;
-  font-size: 16px;
-  border-radius: 4px;
-  color: #e1e1e1;
-  transition: color 0.3s;
-}
-
-.reset-filters-btn:hover {
-  color: white;
-}
-
-.filter-btns-section {
-  font-size: 14px;
+.search-filter-container > button {
+  height: 100%;
 }

@@ -14,7 +14,7 @@ export default function App({ preloadedCharacters }) {
 					<AccountStateWidget/>
 					<div className='content-wrapper'>
 						<Routes>
-							<Route path="/AccountSettings" element={<AccountSettings/>}/>
+							<Route path="/" element={<AccountSettings/>}/>
 						</Routes>
 					</div>
 				</CharacterDataProvider>

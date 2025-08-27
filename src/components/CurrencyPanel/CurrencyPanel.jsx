@@ -17,9 +17,9 @@ const CurrencyPanel = ({ sinners }) => {
 	const sinnerShardsHandlers = useMemo(() => {
 		const map = {};
 		sinners.forEach(sinner => {
-			map[sinner.name] = (value) => {
+			map[sinner.id] = (value) => {
         if (value === "" || /^[0-9]+$/.test(value)) {
-          setSinnerShards(sinner.name, value === "" ? 0 : parseInt(value, 10));
+          setSinnerShards(sinner.id, value === "" ? 0 : parseInt(value, 10));
         }
 			};
 		});
@@ -33,10 +33,10 @@ const CurrencyPanel = ({ sinners }) => {
 			<div className="currency-panel">
 				{sinners.slice(0, 6).map(sinner => (
 					<CurrencyInput
-						key={sinner.name}
+						key={sinner.id}
 						icon={sinner.icon}
-						value={shards[sinner.name]}
-						handleOnChange={sinnerShardsHandlers[sinner.name]}
+						value={shards[sinner.id]}
+						handleOnChange={sinnerShardsHandlers[sinner.id]}
 					/>
 				))}
 			</div>
@@ -44,10 +44,10 @@ const CurrencyPanel = ({ sinners }) => {
 			<div className="currency-panel">
 				{sinners.slice(6, 12).map(sinner => (
 					<CurrencyInput
-						key={sinner.name}
+						key={sinner.id}
 						icon={sinner.icon}
-						value={shards[sinner.name]}
-						handleOnChange={sinnerShardsHandlers[sinner.name]}
+						value={shards[sinner.id]}
+						handleOnChange={sinnerShardsHandlers[sinner.id]}
 					/>
 				))}
 			</div>

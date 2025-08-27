@@ -1,6 +1,6 @@
 import { createContext, useEffect, useMemo, useState, useRef } from "react";
 import { calcDispensableIdentitiesAll } from "@/utils/ShardUtils";
-import { calcDispensableIdentitiesSingle } from "../utils/ShardUtils";
+import { calcDispensableIdentitiesSingle } from "@/utils/ShardUtils";
 
 export const DispensableContext = createContext();
 
@@ -30,12 +30,12 @@ export const DispensableProvider = ({ children, sinners, shards, nomCrate }) => 
 		else {
 			const prevShards = prevShardsRef.current;
 
-			Object.keys(shards).forEach(sinnerName => {
-				if(shards[sinnerName] !== prevShards[sinnerName]) {
-					const newValue = calcDispensableIdentitiesSingle(sinnerName, shards, nomCrate);
+			Object.keys(shards).forEach(sinnerId => {
+				if(shards[sinnerId] !== prevShards[sinnerId]) {
+					const newValue = calcDispensableIdentitiesSingle(sinnerId, shards, nomCrate);
 					setDispensable(prev => ({
 						...prev,
-						[sinnerName]: newValue,
+						[sinnerId]: newValue,
 					}));
 				}
 			});

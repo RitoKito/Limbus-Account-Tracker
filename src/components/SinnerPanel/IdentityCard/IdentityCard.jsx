@@ -89,7 +89,7 @@ const IdentityCard = React.memo(({sinner, identity, accountStateHandlers, isInWi
 				</div>
 				<h2 className='identity-name'>{identity.name}</h2>
 			</div>
-			{renderCardButtons()}
+			{identity.rarity > 0 ? renderCardButtons() : null}
       <img src={`${identity.image}`}/>
     </div>
   )

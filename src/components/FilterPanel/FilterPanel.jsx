@@ -16,15 +16,15 @@ const FilterPanel = ({ filters, sinners, toggleRarity, toggleDamageType, toggleS
   <div className='vbox'>
 
     <div className='search-filter-container'>
-    <input
-      id="search-input"
-      className='search-input' 
-      type="text"
-      placeholder='Search by name...' 
-      onChange={(e) => setSearchTerm(e.target.value)}/>
-    <button className='reset-filters-btn' onClick={clearFilters}>
-      Clear Filters
-    </button>
+      <input
+        id="search-input"
+        className='search-input' 
+        type="text"
+        placeholder='Search by name...' 
+        onChange={(e) => setSearchTerm(e.target.value)}/>
+      <button onClick={clearFilters}>
+        Clear Filters
+      </button>
     </div>
     
     <section className='filter-panel'>

@@ -14,7 +14,7 @@ export function AppInitializerInner({ onInit }) {
 	useEffect(() => {
 		// Set id to each identity on load
 		const dataWithIds = characterData.map(sinner => {
-			setSinnerShards(sinner.name, 0);
+			setSinnerShards(sinner.id, 0);
 			
 			return {
 			...sinner,

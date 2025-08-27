@@ -5,9 +5,9 @@ const NavigationBar = () => {
   return(
     <div className="navigation-bar">
       <ul>
-        <li><NavLink to="/" className={({ isActive }) => isActive ? 'active-link' : undefined}>About</NavLink></li>
-        <li><NavLink to="/AccountSettings" className={({ isActive }) => isActive ? 'active-link' : undefined}>Account Settings</NavLink></li>
-        <li><NavLink to="/AccountSummary" className={({ isActive }) => isActive ? 'active-link' : undefined}>Account Summary</NavLink></li>
+        {/*<li><NavLink to="/" className={({ isActive }) => isActive ? 'active-link' : undefined}>About</NavLink></li>*/}
+        <li><NavLink to="/" className={({ isActive }) => isActive ? 'active-link' : undefined}>Account Settings</NavLink></li>
+        {/*<li><NavLink to="/AccountSummary" className={({ isActive }) => isActive ? 'active-link' : undefined}>Account Summary</NavLink></li>*/}
       </ul>
     </div>
   )

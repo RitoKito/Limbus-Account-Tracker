@@ -1,29 +1,61 @@
 import { createContext, useState, useEffect, useCallback, useMemo } from 'react';
+import { throttle } from 'lodash';
 
 export const AccountStateContext = createContext();
 export const AccountStateProvider = ({children}) => {
 
-  const defaultAccountState = {
+  const defaultState = {
     owned: [],
     wishlist: [],
     shards: [],
     nomCrate: 0,
   };
 
-  const exportAccountState = () => {
-    const accountState = {
-      
-    }
-  }
+  const [defaultAccountState, setDefaultAccountState] = useState(defaultState)
 
   const [accountState, setAccountState] = useState(() => {
-    const stored = null; // localStorage.getItem('accountState') disabled for now
+    const stored = localStorage.getItem('accountState');
     return stored ? JSON.parse(stored) : defaultAccountState;
   });
 
+  const timeoutTime = 3000;
+  //Save account state 1 second after user applied change 
+  const saveAccountState = useMemo(() =>
+    throttle((state) => {
+      localStorage.setItem("accountState", JSON.stringify(state));
+      console.log("State Saved");
+    }, timeoutTime), []
+  )
+
   useEffect(() => {
-    localStorage.setItem("accountState", JSON.stringify(accountState));
-  }, [accountState]);
+    saveAccountState(accountState);
+  }, [accountState, saveAccountState])
+
+  const simplifySinners = (sinners) => {
+    return sinners.map(({ id, identities }) => ({
+      id,
+      identities: identities.map(({ id }) => ({ id })),
+    }));
+  };
+
+  useEffect(() => {
+    console.log(getExportAccountState());
+  }, [accountState])
+
+    const getExportAccountState = useCallback(() => ({
+    ...accountState,
+    owned: simplifySinners(accountState.owned),
+    wishlist: simplifySinners(accountState.wishlist),
+    shards: accountState.shards,
+    nomCrate: accountState.nomCrate,
+  }));
+
+  const setNewDefaultState = () => {
+    setDefaultAccountState(accountState);
+  }
+
+  const resetAccountState = () => {
+  } 
 
   const setNomCrate = useCallback((value) => {
     setAccountState(prev => {
@@ -33,13 +65,13 @@ export const AccountStateProvider = ({children}) => {
       }});
   }, []);
 
-  const setSinnerShards = useCallback((sinnerName, value) => {
+  const setSinnerShards = useCallback((sinnerId, value) => {
     setAccountState(prev => {
       return {
         ...prev,
         shards: {
           ...prev.shards,
-          [sinnerName]: value,
+          [sinnerId]: value,
         },
       }});
   }, []);
@@ -182,8 +214,8 @@ export const AccountStateProvider = ({children}) => {
   }, [accountState.owned]);
 
   const accountContextValue = useMemo(() => ({
-    setNomCrate: setNomCrate,
-    setSinnerShards: setSinnerShards,
+    setNomCrate,
+    setSinnerShards,
 		owned: accountState.owned,
 		wishlist: accountState.wishlist,
 		nomCrate: accountState.nomCrate,
@@ -194,6 +226,9 @@ export const AccountStateProvider = ({children}) => {
     markUnowned,
 		wishlistSet,
     ownedSet,
+    getExportAccountState,
+    setDefaultAccountState: resetAccountState,
+    setNewDefaultState,
   }), [
     setNomCrate,
     setSinnerShards,
@@ -207,6 +242,9 @@ export const AccountStateProvider = ({children}) => {
     markUnowned,
 		wishlistSet,
     ownedSet,
+    getExportAccountState,
+    resetAccountState,
+    setNewDefaultState,
 	]);
 
   return (

@@ -1,0 +1,30 @@
+button {
+	height: 35px;
+}
+
+.import-panel {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.string-import-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.string-import-outcome.fail {
+	color: red;
+}
+
+.string-import-outcome.success {
+	color: green;
+}
+
+.export-container {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	flex-wrap: wrap;
+}

@@ -14,11 +14,7 @@
   z-index: 999;
 }
 
-@media (max-width: 768px) {
-  .widget-container {
-    width: 50%;
-  }
-}
+
 
 
 .currency-bar {
@@ -81,4 +77,16 @@
 .collapsible {
   overflow: hidden;
   transition: height 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .widget-container {
+    width: 50%;
+  }
+}
+
+@media (max-height: 600px) {
+  .wishlist-panel {
+    height: 200px;
+  }
 }
