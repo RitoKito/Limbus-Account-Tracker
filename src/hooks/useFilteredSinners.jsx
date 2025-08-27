@@ -1,7 +1,10 @@
+import { identity } from "lodash";
 import { useEffect, useState } from "react";
 
 const noFiltersApplied = (filters) => {
   return (
+    filters.ownedEnabled === false &&
+    filters.wishlistedEnabled === false &&
     filters.rarities.length === 0 &&
     filters.damageTypes.length === 0 &&
     filters.sinTypes.length === 0 &&
@@ -13,6 +16,21 @@ const noFiltersApplied = (filters) => {
 const filterSinnersByName = (sinners, selectedNames) => {
   if (selectedNames.length === 0) return sinners;
   return sinners.filter(sinner => selectedNames.includes(sinner.name));
+}
+
+const filterSinnersBySet = (sinners, sinnerSet) => {
+  return sinners.map((sinner) => {
+    const setIdentities = sinnerSet.sinners[sinner.id]?.identities;
+
+    const matchingIds = sinner.identities.filter(identity => {
+      return setIdentities?.has(identity.id);
+    })
+
+    return {
+      ...sinner,
+      identities: matchingIds,
+    }
+  })
 }
 
 const filterByRarityAndType = (sinners, rarities, damageTypes, sinTypes) => {
@@ -69,6 +87,41 @@ const useFilteredSinners = (sinners, filters) => {
     }
     else {
       let filtered = [...sinners];
+
+      if (filters.ownedEnabled && filters.wishlistedEnabled) {
+        const ownedFiltered = filterSinnersBySet(filtered, filters.owned);
+        const wishlistedFiltered = filterSinnersBySet(filtered, filters.wishlisted);
+
+        const mergedMap = new Map();
+
+        ownedFiltered.forEach(sinner => mergedMap.set(sinner.id, sinner));
+        wishlistedFiltered.forEach(sinner => {
+          if(mergedMap.has(sinner.id)){
+            const existingSinner = mergedMap.get(sinner.id);
+
+            const mergedIdentities = [
+              ...existingSinner.identities,
+              ...sinner.identities.filter(id => !existingSinner.identities.some(eid => eid.id === id.id)),
+            ];
+
+            mergedMap.set(sinner.id, {
+              ...existingSinner,
+              identities: mergedIdentities
+            });
+          }
+          else {
+            mergedMap.set(sinner.id, sinner);
+          }
+        });
+
+        filtered = Array.from(mergedMap.values());
+      }
+      else if(filters.ownedEnabled) {
+        filtered = filterSinnersBySet(filtered, filters.owned);
+      }
+      else if(filters.wishlistedEnabled) {
+        filtered = filterSinnersBySet(filtered, filters.wishlisted);
+      }
 
       filtered = filterSinnersByName(filtered, filters.sinnerNames);
       filtered = filterByRarityAndType(filtered, filters.rarities, filters.damageTypes, filters.sinTypes);

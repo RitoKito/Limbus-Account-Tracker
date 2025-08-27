@@ -27,6 +27,7 @@ body {
 }
 
 .content-wrapper {
+  min-height: 150vh;
   margin-top: 50px;
   margin-left: calc(50px + var(--sidebar-width));
   margin-right: calc(200px);

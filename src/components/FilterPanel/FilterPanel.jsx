@@ -2,7 +2,18 @@ import './FilterPanel.css'
 import FilterButton from './FilterButton/FilterButton.jsx'
 import {getFilterPanelConfigs} from './FilterPanelConfig.js'
 
-const FilterPanel = ({ filters, sinners, toggleRarity, toggleDamageType, toggleSin, toggleSinner, setSearchTerm, clearFilters }) => {
+const FilterPanel = ({
+  filters,
+  sinners,
+  toggleOwned,
+  toggleWishlisted,
+  toggleRarity,
+  toggleDamageType,
+  toggleSin,
+  toggleSinner,
+  setSearchTerm,
+  clearFilters,
+}) => {
   const FILTER_PANEL_CONFIGS = getFilterPanelConfigs({
     filters,
     sinners,
@@ -28,33 +39,42 @@ const FilterPanel = ({ filters, sinners, toggleRarity, toggleDamageType, toggleS
     </div>
     
     <section className='filter-panel'>
-    {FILTER_PANEL_CONFIGS.map(({ className, panelName, data, valueKey, tooltipKey, iconKey, onClick, selected }) => (
-      <div key={className} className={className}>
-      <div className='vbox'>
+      {FILTER_PANEL_CONFIGS.map(({ className, panelName, data, valueKey, tooltipKey, iconKey, onClick, selected }) => (
+        <div key={className} className={className}>
+          <h3 className='filter-btns-section'>{panelName}</h3>
 
-        <h3 className='filter-btns-section'>{panelName}</h3>
-
-        <div className='filter-btns-container'>
-        {data.map(buttonDataObj => {
-          const value = buttonDataObj[valueKey];
-          return (
-          <FilterButton
-            key={value}
-            value={value}
-            icon={buttonDataObj[iconKey]}
-            tooltipText={buttonDataObj[tooltipKey]}
-            onClick={() => onClick(value)}
-            isSelected={selected.includes(value)}
-          />
-          );
-        })}
+          <div className='filter-btns-container'>
+          {data.map(buttonDataObj => {
+            const value = buttonDataObj[valueKey];
+            return (
+            <FilterButton
+              key={value}
+              value={value}
+              icon={buttonDataObj[iconKey]}
+              tooltipText={buttonDataObj[tooltipKey]}
+              onClick={() => onClick(value)}
+              isSelected={selected.includes(value)}
+            />
+            );
+          })}
+          </div>
         </div>
-        
-      </div>
-      </div>
-    ))}
+      ))}
     </section>
-    
+    <section className='filter-account-state'>
+      <FilterButton 
+        width='100px' 
+        tooltipText={'Owned'}
+        isSelected={filters.ownedEnabled}
+        onClick={toggleOwned}
+      />
+      <FilterButton 
+        width='100px' 
+        tooltipText={'Wishlisted'}
+        isSelected={filters.wishlistedEnabled}
+        onClick={toggleWishlisted}
+      />
+    </section>
   </div>
   )
 }

@@ -29,3 +29,9 @@ button {
 .search-filter-container > button {
   height: 100%;
 }
+
+.filter-account-state {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}

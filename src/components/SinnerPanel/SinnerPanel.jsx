@@ -4,7 +4,6 @@ import IdentityCard from "./IdentityCard/IdentityCard"
 
 const SinnerPanel = React.memo(({sinner, accountStateHandlers, wishlistSet, ownedSet, cardVariant = "default", dispensable}) => {
   const displayDispensable = () => {
-    console.log(dispensable)
     if(dispensable === 0.5){
       return (
         <>

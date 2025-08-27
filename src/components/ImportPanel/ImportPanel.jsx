@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import './ImportPanel.css'
 
-const ImportPanel = ({ importAccountState, exportAccountState, resetAccountState }) => {
+const ImportPanel = ({ importAccountState, exportAccountState, resetAccountState, accountState }) => {
 	const [inputValue, setInputValue] = useState('');
 	const [outcomeString, setOutcomeString] = useState('');
 	const [outcome, setOutcome] = useState('');
@@ -37,12 +37,21 @@ const ImportPanel = ({ importAccountState, exportAccountState, resetAccountState
 			setOutcomeString('Import Successful')
 		}
 		catch(e) {
-			console.log("Error during Import: Error while parsing");
-			console.log(e);
+			console.log("Error during Import: Error while parsing", e);
 			setOutcome('fail');
 			setOutcomeString("Invalid Import String")
 		}
 	}
+
+  const handleCopyToClipboard = (value) => {
+    navigator.clipboard.writeText(value)
+    .then(() => {
+      console.log("Account State copied to clipboard")
+    })
+    .catch(e => {
+      console.log('Copy failed', e);
+    });
+  }
 
   return(
     <div className="import-panel">
@@ -85,7 +94,7 @@ const ImportPanel = ({ importAccountState, exportAccountState, resetAccountState
 							Download Data
 						</button>
 
-						<button>
+						<button onClick={() => handleCopyToClipboard(accountState)}>
 							Copy to Clipboard
 						</button>
 				</div>

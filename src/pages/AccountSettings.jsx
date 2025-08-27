@@ -10,7 +10,6 @@ import CurrencyPanel from '@/components/CurrencyPanel/CurrencyPanel.jsx'
 import { CharacterDataContext } from '@/context/CharacterDataContext'
 import { DispensableContext } from '@/context/DispensableContext'
 import ImportPanel from '@/components/ImportPanel/ImportPanel'
-import { identity } from 'lodash'
 
 const AccountSettings = () => {
   const { characters } = useContext(CharacterDataContext);
@@ -44,12 +43,18 @@ const AccountSettings = () => {
   const [sinners, setSinners] = useState(characters);
 
   const [filters, setFilters] = useState({
+    ownedEnabled: false,
+    owned: {},
+    wishlistedEnabled: false,
+    wishlisted: {},
     rarities: [],
     damageTypes: [],
     sinTypes: [],
     sinnerNames: [],
     searchTerm: '',
   });
+
+  const [initDone, setInitDone] = useState(false);
 
   const [filterCount, setFilterCounter] = useState(0);
 
@@ -72,6 +77,28 @@ const AccountSettings = () => {
       };
     });
   };
+
+  const toggleOwned = () => {
+    if(filters['ownedEnabled']){
+      toggleFilter('ownedEnabled', false);
+      toggleFilter('owned', {});
+    }
+    else{
+      toggleFilter('ownedEnabled', true);
+      toggleFilter('owned', ownedSet);
+    }
+  }
+
+  const toggleWishlisted = () => {
+    if(filters['wishlistedEnabled']){
+      toggleFilter('wishlistedEnabled', false);
+      toggleFilter('wishlisted', {});
+    }
+    else{
+      toggleFilter('wishlistedEnabled', true);
+      toggleFilter('wishlisted', wishlistSet);
+    }
+  }
 
   const toggleRarity = (rarity) => {
     toggleFilter('rarities', rarity);
@@ -104,7 +131,6 @@ const AccountSettings = () => {
   }
   const filteredSinners = useFilteredSinners(sinners, filters)
 
-  const [initDone, setInitDone] = useState(false);
   // Mark 0 rarity IDs owned
   // as all players own them by default
   useEffect(() => {
@@ -138,7 +164,7 @@ const AccountSettings = () => {
   const importAccountState = useCallback((accountStateString) => {
     const stateParse = JSON.parse(accountStateString);
 
-    setDefaultAccountState();
+    resetAccountState();
 
     setNomCrate(stateParse.nomCrate);
 
@@ -201,6 +227,7 @@ const AccountSettings = () => {
           importAccountState={importAccountState}
           exportAccountState={exportAccountState}
           resetAccountState={resetAccountState}
+          accountState={JSON.stringify(getExportAccountState())}
         />
       </section>
 
@@ -218,6 +245,8 @@ const AccountSettings = () => {
         <FilterPanel
           filters={filters}
           sinners={sinners}
+          toggleOwned={toggleOwned}
+          toggleWishlisted={toggleWishlisted}
           toggleRarity={toggleRarity}
           toggleDamageType={toggleDamageType}
           toggleSin={toggleSinType}
