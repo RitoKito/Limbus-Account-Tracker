@@ -1,4 +1,4 @@
-export const BASE_IMAGE_PATH = "/assets/images/";
+export const BASE_IMAGE_PATH = "/Limbus-Account-Tracker/assets/images/";
 export const ICON_PATH = BASE_IMAGE_PATH + "icons/";
 export const IDENTITY_IMAGE_PATH = BASE_IMAGE_PATH + "sinners/identities/";
 

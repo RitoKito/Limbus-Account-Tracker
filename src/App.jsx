@@ -7,7 +7,7 @@ import { CharacterDataProvider } from './context/CharacterDataContext.jsx'
 
 export default function App({ preloadedCharacters }) {
   return(
-		<BrowserRouter>
+		<BrowserRouter basename='/Limbus-Account-Tracker/'>
 			<div className='layout'>
 				<CharacterDataProvider preloadedData={preloadedCharacters}>
 					<NavigationBar />

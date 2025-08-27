@@ -76,7 +76,7 @@ input::placeholder {
 }
 
 button {
-  min-width: 70px;
+  min-width: 45px;
   max-width: 120px;
   width: 100%;
   min-height: 45px;
