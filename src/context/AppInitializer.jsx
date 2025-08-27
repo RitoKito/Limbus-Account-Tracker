@@ -33,10 +33,6 @@ export function AppInitializerInner({ onInit }) {
 		onInit(dataWithIds)
 	}, []);
 
-	useEffect(() => {
-		console.log(sinners)
-	},[sinners, loading]);
-
 	return null;
 }
 

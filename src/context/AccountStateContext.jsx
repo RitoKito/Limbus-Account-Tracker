@@ -15,8 +15,9 @@ export const AccountStateProvider = ({children}) => {
 
   const [accountState, setAccountState] = useState(() => {
     const stored = localStorage.getItem('accountState');
-    return stored ? JSON.parse(stored) : defaultAccountState;
-    //return defaultAccountState;
+    // Temporarily disabled
+    //return stored ? JSON.parse(stored) : defaultAccountState;
+    return defaultAccountState;
   });
 
   const timeoutTime = 3000;
@@ -28,9 +29,9 @@ export const AccountStateProvider = ({children}) => {
     }, timeoutTime), []
   )
 
-  useEffect(() => {
+  /*useEffect(() => {
     saveAccountState(accountState);
-  }, [accountState, saveAccountState])
+  }, [accountState, saveAccountState])*/
 
   const simplifySinners = (sinners) => {
     return sinners.map(({ id, identities }) => ({
@@ -40,7 +41,6 @@ export const AccountStateProvider = ({children}) => {
   };
 
   useEffect(() => {
-    console.log(getExportAccountState());
   }, [accountState])
 
     const getExportAccountState = useCallback(() => ({
@@ -56,7 +56,7 @@ export const AccountStateProvider = ({children}) => {
   }
 
   const resetAccountState = useCallback(() => {
-    localStorage.clear();
+    localStorage.removeItem('accountState');
     setAccountState(defaultAccountState);
   })
 

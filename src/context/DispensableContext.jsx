@@ -43,7 +43,6 @@ export const DispensableProvider = ({ children, sinners, shards, nomCrate }) => 
 
 		prevShardsRef.current = {...shards};
 		prevNomCrateRef.current = nomCrate;
-    console.log(prevShardsRef.current);
   }, [sinners, nomCrate, shards]);
 
 	const dispensableContextValue = useMemo(() => ({

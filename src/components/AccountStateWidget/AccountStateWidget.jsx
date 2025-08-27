@@ -70,7 +70,6 @@ const AccountStateWidget = () => {
           {isCollapsed ? "Show Wishlist" : "Hide Wishlist" }
         </button>
       </div>
-			{console.log("RUNDER OF WIDGET")}
       <div
         ref={contentRef}
         className="collapsible"

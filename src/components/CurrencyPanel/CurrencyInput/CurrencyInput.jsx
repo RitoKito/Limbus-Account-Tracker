@@ -23,7 +23,6 @@ const CurrencyInput = React.memo(({icon, handleOnChange, value, shard=true}) => 
     <div className="currency-input">
       {renderIcon(shard)}
 
-			{console.log("INPUT RENDER")}
       <input 
 				type="text"
 				inputMode="numeric"

@@ -78,7 +78,6 @@ const IdentityCard = React.memo(({sinner, identity, accountStateHandlers, isInWi
   return (
     <div className={`identity-card ${variant}`}>
 			<div className="card-details">
-				{console.log("CARD RENDER " + identity.name + " " + variant)}
 				<div className="card-header">
 
 					<h2 className='identity-rarity'>{rarityLabels[identity.rarity]}</h2>
