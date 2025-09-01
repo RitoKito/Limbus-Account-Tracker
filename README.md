@@ -67,7 +67,7 @@ For detailed explanation of each section see below.
   - Or paste your saved data string into the input field manually.
 - Press "Import" to load the data.
 - If you see "Status: Import Successful", everything worked.
-- If you see "Status: Invalid Import String", the data may be corrupted — check for any accidentally added characters or try copying original string again.
+- If you see "Status: Invalid Import String", the data may be corrupted — check for any accidentally added characters or try importing/copying original string again.
 
 ### Currency
 This section lets you enter how much currency (Shards and Nominal Crates) you currently have.<br/>
