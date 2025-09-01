@@ -1,4 +1,5 @@
 # Limbus Account Tracker
+https://ritokito.github.io/Limbus-Account-Tracker/
 
 # Table of Content
 - [About](#about)
